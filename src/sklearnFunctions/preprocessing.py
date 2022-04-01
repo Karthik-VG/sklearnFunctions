@@ -73,6 +73,6 @@ class outliers:
             perc = np.shape(v_col)[0] * 100.0 / np.shape(data)[0]
             print("Column %s outliers = %.2f%%" % (col, perc))
             outlier_percentage["column_Name"].append(col)
-            outlier_percentage["outlier_Percentage_in_%"].append(perc)
+            outlier_percentage["outlier_Percentage"].append(perc)
 
         return pd.DataFrame(outlier_percentage)
