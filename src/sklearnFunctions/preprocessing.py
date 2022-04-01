@@ -1,10 +1,13 @@
 import pandas as pd
+import numpy as np
 
 class outliers:
     def outliers_removal(self,data):
         """
             Parameters
             ----------
+            Note : The Values of the DataFrame must be numeric values
+
             data : DataFrame input
                 DESCRIPTION. This function will remove the outliers present in our DataFrame
 
@@ -46,3 +49,30 @@ class outliers:
             # return Outlier removed DataFrame
             
         return data
+
+
+    def is_present(self,data):
+        """
+            Parameters
+            ----------
+            data : DataFrame input
+                DESCRIPTION. This function will return the percentage of outliers present in column.
+    
+            Returns
+            -------
+            DataFrame
+                Return the pecentage of outliers present in each column.
+        """
+        outlier_percentage={"column_Name":[],"outlier_Percentage":[]}
+
+        for col, val in data.items():
+            q1 = val.quantile(0.25)
+            q3 = val.quantile(0.75)
+            irq = q3 - q1
+            v_col = val[(val <= q1 - 1.5 * irq) | (val >= q3 + 1.5 * irq)]
+            perc = np.shape(v_col)[0] * 100.0 / np.shape(data)[0]
+            print("Column %s outliers = %.2f%%" % (col, perc))
+            outlier_percentage["column_Name"].append(col)
+            outlier_percentage["outlier_Percentage_in_%"].append(perc)
+
+        return pd.DataFrame(outlier_percentage)

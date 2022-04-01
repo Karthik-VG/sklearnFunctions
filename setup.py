@@ -9,7 +9,7 @@ USER_NAME = "Karthik-VG"
 
 setuptools.setup(
     name= f"{PROJECT_NAME}",
-    version="0.0.5",
+    version="0.0.6",
     author=USER_NAME,
     author_email="karthikvg.engineer@gmail.com",
     description="module built on needy sklearn preprocessing functions",
@@ -30,6 +30,7 @@ setuptools.setup(
     install_requires = [
         "sklearn",
         "pandas",
+        "numpy"
 
     ]
 
