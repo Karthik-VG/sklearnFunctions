@@ -43,8 +43,8 @@ class outliers:
 
             # Removing outlier data from DataFrame
 
-            data=data[data['y'] >= outliers[k]["lower"]]
-            data=data[data['y'] <= outliers[k]["upper"]]
+            data=data[data[k] >= outliers[k]["lower"]]
+            data=data[data[k] <= outliers[k]["upper"]]
 
             # return Outlier removed DataFrame
             
@@ -71,7 +71,6 @@ class outliers:
             irq = q3 - q1
             v_col = val[(val <= q1 - 1.5 * irq) | (val >= q3 + 1.5 * irq)]
             perc = np.shape(v_col)[0] * 100.0 / np.shape(data)[0]
-            print("Column %s outliers = %.2f%%" % (col, perc))
             outlier_percentage["column_Name"].append(col)
             outlier_percentage["outlier_Percentage"].append(perc)
 
